@@ -36,12 +36,10 @@ async def addTask(task: Task):
 @router.put("/{id}")
 async def updateTask(id: str, updateTask: UpdateTask):
     modificaciones = {"updatedAt": datetime.now()}
-    if updateTask.name is not None:
-        modificaciones["name"] = updateTask.name
-    if updateTask.description is not None:
-        modificaciones["description"] = updateTask.description
-    if updateTask.status is not None:
-        modificaciones["status"] = updateTask.status
+    for key, value in dict(updateTask).items():
+        if value is not None:
+            modificaciones[key] = value
+
     try:
         db_client.local.tasks.find_one_and_update({"_id": ObjectId(id)}, {"$set":modificaciones})
         return search_task("_id", ObjectId(id))
