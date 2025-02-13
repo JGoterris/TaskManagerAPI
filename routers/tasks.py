@@ -4,7 +4,6 @@ from db.models.task import Task, UpdateTask
 from db.schemas.task import task_schema, tasks_schema
 from datetime import datetime
 from bson import ObjectId
-import logging
 
 router = APIRouter(prefix="/tasks", tags=["tasks"])
 
@@ -45,6 +44,19 @@ async def updateTask(id: str, updateTask: UpdateTask):
         return search_task("_id", ObjectId(id))
     except:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Tarea no encontrada")
+
+@router.delete("/{id}")
+async def deleteTask(id: str):
+    try:
+        task = db_client.local.tasks.find_one_and_delete({"_id": ObjectId(id)})
+        return Task(**task_schema(task))
+    except:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Tarea no encontrada")
+
+@router.delete("/")
+async def deleteAllTasks():
+    db_client.local.tasks.drop()
+    return {"message": "Todas las tareas han sido borradas correctamente"}
 
 
 def search_task(field: str, value):
