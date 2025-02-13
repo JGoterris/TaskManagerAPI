@@ -67,6 +67,12 @@ El resto de campos de la tarea se rellenan automáticamente.
 
 Cabe destacar que los campos son opcionales, si no se indica alguno, se mantiene el original.
 
-### Eliminar tarea
+#### Eliminar
+
+#### Eliminar una tarea
 
 - DELETE a 127.0.0.1:8000/tasks/_**id_tarea**_
+
+#### Eliminar todas las tareas
+
+- DELETE a 127.0.0.1:8000/tasks
