@@ -4,7 +4,15 @@
 API simple realizada en python con FastAPI y MongoDB para el manejo de tareas.
 
 
+## Preparación
 
+Instalar los paquetes necesarios:
+
+```bash
+  pip install -r requirements.txt
+```
+
+También será necesario instalar MongoDB para lanzar el servidor de la base de datos en local.
 
 ## Utilización
 
