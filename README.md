@@ -67,7 +67,7 @@ El resto de campos de la tarea se rellenan automáticamente.
 
 Cabe destacar que los campos son opcionales, si no se indica alguno, se mantiene el original.
 
-#### Eliminar
+### Eliminar
 
 #### Eliminar una tarea
 
